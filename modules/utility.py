@@ -1,3 +1,26 @@
+import random
+def generate_player_beliefs():
+    """
+    Generate player beliefs for all combinations of previous states.
+    Beliefs are represented as probabilities of cooperation given the previous actions.
+    Returns two dictionaries mapping previous action pairs to cooperation probabilities.
+    """
+    def random_prob():
+        return round(random.random(), 2)  # Random probability rounded to two decimal places
+
+    # Possible previous actions combinations
+    actions = ['C', 'B']
+
+    # Generating beliefs for each possible previous action combination
+    P1 = {}
+    P2 = {}
+    for X in actions:
+        for Y in actions:
+            P1[X + Y] = random_prob()
+            P2[X + Y] = random_prob()
+
+    return P1, P2
+
 import itertools
 import numpy as np
 

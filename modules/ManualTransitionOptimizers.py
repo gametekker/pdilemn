@@ -66,13 +66,13 @@ def optimize_transition_matrix(initial_P, rewards_matrix, player, gamma, maxd, s
 
     for epoch in range(epochs):
         total_loss = 0
-        for state in states:
+        for player in range(2):
+            #for state in states:
             # Reset gradients
             optimizer.zero_grad()
 
             # Calculate cumulative reward
-            cumulative_reward = calculate_cumulative_reward_neumann_torch(rewards_matrix, P, state, 0, gamma)
-            cumulative_reward += calculate_cumulative_reward_neumann_torch(rewards_matrix, P, state, 1, gamma)
+            cumulative_reward = sum(calculate_cumulative_reward_neumann_torch(rewards_matrix, P, state, player, gamma) for state in states)
 
             # Since we're maximizing the cumulative reward, we minimize the negative of it
             loss = -cumulative_reward
