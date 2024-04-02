@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 def generate_player_beliefs():
     """
     Generate player beliefs for all combinations of previous states.
@@ -50,3 +51,19 @@ def create_structured_param_combinations(param_dict, func):
         arr[ind]=func(*combinations[i])
 
     return arr
+
+def doplots(data: list):
+    """Create plot of the evolution of player beliefs over time
+
+    Args:
+        data (list): _description_
+    """
+    mapping = [('C','C'),('C','B'),('B','C'),('B','B')]
+    # Create 4 plots, each with the elements from the two tensors at the same index
+    for i in range(4):  # Assuming each tensor has size 4
+        plt.figure()  # Create a new figure for each plot
+        plt.plot([float(tensor[i]) for tensor in data[0]], label='Player 1')  # Plot from the first list
+        plt.plot([float(tensor[i]) for tensor in data[1]], label='Player 2')  # Plot from the second list
+        plt.title(f'previous state {mapping[i]}')
+        plt.legend()
+        plt.show()

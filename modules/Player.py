@@ -2,16 +2,9 @@ from torch import nn
 import torch
 class Player(nn.Module):
     def __tuple_to_decimal(self,t1,t2):
-        # Assume the first character is mapped to '0' and the second to '1'
-        mapping = {t1: '0', t2: '1'}
-
-        # Create the binary string
-        binary_str = ''.join(mapping[char] for char in [t1,t2])
-
-        # Convert the binary string to a decimal number
-        decimal_num = int(binary_str, 2)
-
-        return decimal_num
+        
+        mapping = [('C','C'),('C','B'),('B','C'),('B','B')]
+        return mapping.index((t1,t2))
 
     def __init__(self, beliefs: dict, rewards: list):
         nn.Module.__init__(self)
