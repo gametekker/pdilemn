@@ -66,4 +66,5 @@ def doplots(data: list):
         plt.plot([float(tensor[i]) for tensor in data[1]], label='Player 2')  # Plot from the second list
         plt.title(f'previous state {mapping[i]}')
         plt.legend()
+        plt.savefig(f'plot_{i}.png')
         plt.show()

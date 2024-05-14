@@ -24,7 +24,7 @@ class PlayerEnv():
         """
         Construct the transition matrix for the prisoner's dilemma.
 
-        :return: A 4x4 transition matrix
+        :return: A 4 x 4 transition matrix
         """
         # States are CC, CB, BC, BB (in this order)
         # CC: Both Cooperate, CB: First Cooperates and Second Betrays, etc.
@@ -35,8 +35,8 @@ class PlayerEnv():
         # Sorry for the verbose syntax, must use torch operations to preserve the computational graph
         matrix = torch.stack([
             torch.stack([P1_CC * P2_CC, P1_CC * (1 - P2_CC), (1 - P1_CC) * P2_CC, (1 - P1_CC) * (1 - P2_CC)]),
-            torch.stack([P1_CB * P2_BC, P1_CB * (1 - P2_BC), (1 - P1_CB) * P2_BC, (1 - P1_CB) * (1 - P2_BC)]),
-            torch.stack([P1_BC * P2_CB, P1_BC * (1 - P2_CB), (1 - P1_BC) * P2_CB, (1 - P1_BC) * (1 - P2_CB)]),
+            torch.stack([P1_CB * P2_CB, P1_CB * (1 - P2_CB), (1 - P1_CB) * P2_CB, (1 - P1_CB) * (1 - P2_CB)]),
+            torch.stack([P1_BC * P2_BC, P1_BC * (1 - P2_BC), (1 - P1_BC) * P2_BC, (1 - P1_BC) * (1 - P2_BC)]),
             torch.stack([P1_BB * P2_BB, P1_BB * (1 - P2_BB), (1 - P1_BB) * P2_BB, (1 - P1_BB) * (1 - P2_BB)])
         ])
 
